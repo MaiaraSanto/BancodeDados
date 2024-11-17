@@ -1,3 +1,5 @@
+# Este Projeto contem todos os arquivos do Módulo Banco de Dados como: Organização para Banco de Dados; Tabelas em Query; item de um CRUD e diferença entre NoSQL e SQL;
+
 # BancodeDados
 
 📦 Projeto de Banco de Dados para uma Plataforma de Hospedagem (Estilo Airbnb)
