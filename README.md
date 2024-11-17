@@ -1,6 +1,8 @@
 # Este Projeto contem todos os arquivos do Módulo Banco de Dados como: Organização para Banco de Dados; Tabelas em Query; item de um CRUD e diferença entre NoSQL e SQL;
 
-# BancodeDados
+
+
+# ``BANCO DE DADOS``
 
 📦 Projeto de Banco de Dados para uma Plataforma de Hospedagem (Estilo Airbnb)
 
@@ -176,3 +178,136 @@ Para escalabilidade e funcionalidades futuras, algumas melhorias podem incluir:
 2. Passo 2: Implementar os relacionamentos utilizando chaves estrangeiras.
 3. Passo 3: Testar as funcionalidades principais, como cadastro de lugares, reservas e avaliações.
 4. Passo 4: Validar a integridade e consistência dos dados, principalmente nas tabelas com chaves estrangeiras.
+
+##
+
+
+
+# ``PROJETO: BANCO DE DADOS  DE PROVAS E ALUNOS``
+
+
+📚 Este projeto documenta a criação e manipulação de um banco de dados para um sistema escolar que gerencia informações sobre alunos, professores, matérias e provas. Aqui estão os passos para criar as tabelas, inserir dados e realizar uma consulta específica, conforme solicitado.
+
+🎯 Estrutura do Projeto
+Tabelas e Colunas
+O banco de dados possui quatro tabelas principais:
+
+1. provas
+2. aluno
+3. professor
+4. materia
+
+Cada uma dessas tabelas será detalhada abaixo com as colunas e os tipos de dados especificados.
+
+📌 Instruções
+1. Criar as tabelas provas, aluno, professor e materia.
+2. Inserir 3 alunos na tabela aluno.
+3. Criar uma matéria e associá-la a um professor na tabela materia.
+4. Criar uma prova para cada aluno na matéria criada e definir a nota obtida por cada um.
+5. Escrever uma query final para consultar os dados conforme a necessidade.
+
+🛠️ Passo 1: Criação das Tabelas
+🔹 Tabela aluno
+````
+CREATE TABLE aluno (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE
+);
+````
+
+🔹 Tabela professor
+````
+CREATE TABLE professor (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    data_nascimento DATE
+);
+````
+
+🔹 Tabela materia
+````
+CREATE TABLE materia (
+    id INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    id_professor INTEGER,
+    FOREIGN KEY (id_professor) REFERENCES professor(id)
+);
+````
+
+🔹 Tabela provas
+````
+CREATE TABLE provas (
+    id_aluno INTEGER,
+    id_materia INTEGER,
+    nota FLOAT,
+    data_da_prova DATE,
+    FOREIGN KEY (id_aluno) REFERENCES aluno(id),
+    FOREIGN KEY (id_materia) REFERENCES materia(id)
+);
+````
+
+🛠️ Passo 2: Inserção de Dados nas Tabelas
+Após criar as tabelas, vamos inserir dados conforme solicitado.
+
+1️⃣ Inserir 3 alunos na tabela aluno:
+````
+INSERT INTO aluno (nome, data_nascimento) VALUES
+('João Silva', '2010-03-15'),
+('Maria Oliveira', '2011-07-22'),
+('Pedro Santos', '2010-11-05');
+````
+
+2️⃣ Inserir um professor na tabela professor:
+````
+INSERT INTO professor (nome, data_nascimento) VALUES
+('Carlos Mendes', '1980-05-12');
+````
+
+3️⃣ Inserir uma matéria na tabela materia, associando-a ao professor:
+````
+INSERT INTO materia (nome, id_professor) VALUES
+('Matemática', 1);  -- 1 é o ID do professor Carlos Mendes
+````
+
+4️⃣ Inserir uma prova para cada aluno na matéria Matemática e atribuir notas:
+````
+INSERT INTO provas (id_aluno, id_materia, nota, data_da_prova) VALUES
+(1, 1, 8.5, '2024-11-01'),  -- João Silva
+(2, 1, 9.0, '2024-11-01'),  -- Maria Oliveira
+(3, 1, 7.5, '2024-11-01');  -- Pedro Santos
+````
+
+🛠️ Passo 3: Query de Consulta Final
+Para consultar as informações de cada prova, incluindo o nome do aluno, a matéria e a nota obtida, podemos utilizar a seguinte query:
+````
+SELECT 
+    aluno.nome AS Nome_Aluno,
+    materia.nome AS Materia,
+    provas.nota AS Nota,
+    provas.data_da_prova AS Data_Prova
+FROM 
+    provas
+JOIN 
+    aluno ON provas.id_aluno = aluno.id
+JOIN 
+    materia ON provas.id_materia = materia.id;
+````
+
+📋 Explicação da Query
+Esta query utiliza JOIN para unir as tabelas provas, aluno e materia, permitindo exibir as informações de cada prova de forma mais detalhada, incluindo:
+
+- O nome do aluno (Nome_Aluno),
+- O nome da matéria (Materia),
+- A nota obtida na prova (Nota),
+- E a data da prova (Data_Prova).
+
+  📝 Saída Esperada da Query
+A execução da query acima deve retornar um resultado similar ao seguinte:
+````
+
+- Nome_Aluno	  - Materia	- Nota	- Data_Prova
+- João Silva	  - Matemática  - 8.5	- 2024-11-01
+- Maria Oliveira  - Matemática  - 9.0	- 2024-11-01
+- Pedro Santos	  - Matemática  - 7.5	- 2024-11-01
+````
