@@ -311,3 +311,30 @@ A execução da query acima deve retornar um resultado similar ao seguinte:
 - Maria Oliveira  - Matemática  - 9.0	- 2024-11-01
 - Pedro Santos	  - Matemática  - 7.5	- 2024-11-01
 ````
+
+ # ``SQL CRUD``
+
+📘 Este projeto documenta o uso básico das operações CRUD em SQL, demonstrando como criar, ler, atualizar e deletar registros em uma tabela fictícia. Para este exercício, utilizaremos uma tabela chamada ``clientes``, que representa uma lista de clientes com algumas informações básicas.
+
+🗄️ Estrutura da Tabela clientes
+Descrição
+A tabela clientes armazena informações sobre clientes de uma empresa. Ela possui as seguintes colunas:
+
+- id_cliente: Identificador único do cliente (chave primária).
+- nome: Nome do cliente.
+- email: Endereço de email do cliente.
+- data_nascimento: Data de nascimento do cliente.
+- cidade: Cidade onde o cliente reside.
+
+  ## Estrutura SQL da Tabela ``clientes``
+  ````
+  CREATE TABLE clientes (
+    id_cliente INTEGER PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    data_nascimento DATE,
+    cidade VARCHAR(50)
+  );
+````
+
+
