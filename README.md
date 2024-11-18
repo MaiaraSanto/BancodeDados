@@ -327,14 +327,67 @@ A tabela clientes armazena informações sobre clientes de uma empresa. Ela poss
 - cidade: Cidade onde o cliente reside.
 
   ## Estrutura SQL da Tabela ``clientes``
-  ````
-  CREATE TABLE clientes (
+
+````
+CREATE TABLE clientes (
     id_cliente INTEGER PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     data_nascimento DATE,
     cidade VARCHAR(50)
-  );
+);
+
 ````
+
+🛠️ Operações CRUD
+A seguir, estão as instruções SQL para realizar cada operação CRUD na tabela clientes.
+
+1️⃣ CREATE - Inserir um Novo Cliente
+Para adicionar um novo cliente à tabela, utilizamos o comando INSERT INTO.
+````
+INSERT INTO clientes (nome, email, data_nascimento, cidade) VALUES 
+('Ana Costa', 'ana.costa@email.com', '1990-08-15', 'São Paulo');
+````
+- Esta operação insere um novo cliente chamado "Ana Costa" na tabela clientes, com o email, data de nascimento e cidade especificados.
+
+  2️⃣ READ - Ler/Selecionar Dados de Clientes
+Para consultar os dados de clientes na tabela, utilizamos o comando SELECT. Vamos ler os dados de todos os clientes ou filtrar por uma condição específica.
+````
+SELECT * FROM clientes;
+````
+- Esta operação seleciona todos os registros da tabela clientes, retornando todas as colunas.
+
+  Exemplo de Consulta Filtrada:
+````
+  SELECT nome, email FROM clientes WHERE cidade = 'São Paulo';
+````
+- Esta operação retorna os nomes e emails dos clientes que residem na cidade de "São Paulo".
+
+  3️⃣ UPDATE - Atualizar Dados de um Cliente
+Para atualizar as informações de um cliente existente, utilizamos o comando UPDATE junto com uma condição WHERE para definir o registro a ser modificado.
+````
+UPDATE clientes 
+SET cidade = 'Rio de Janeiro' 
+WHERE id_cliente = 1;
+````
+- Esta operação atualiza o campo cidade para "Rio de Janeiro" no cliente que possui id_cliente igual a 1.
+
+  Exemplo Atualizando Múltiplos Campos:
+````
+  UPDATE clientes 
+SET email = 'ana.nova@email.com', cidade = 'Curitiba' 
+WHERE nome = 'Ana Costa';
+````
+- Esta operação altera o email e a cidade do cliente com nome "Ana Costa".
+
+  4️⃣ DELETE - Deletar um Cliente
+Para remover um cliente da tabela, utilizamos o comando DELETE FROM junto com uma condição WHERE para especificar o cliente a ser deletado.
+````
+DELETE FROM clientes WHERE id_cliente = 1;
+````
+- Esta operação deleta o cliente que possui id_cliente igual a 1 da tabela clientes.
+ 
+
+  
 
 
